@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhuhangjie.mapper.PicMapper" >
+  <resultMap id="BaseResultMap" type="com.zhuhangjie.pojo.Pic" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="date" property="date" jdbcType="DATE" />
+    <result column="chl" property="chl" jdbcType="CHAR" />
+    <result column="rt" property="rt" jdbcType="CHAR" />
+    <result column="cloud" property="cloud" jdbcType="CHAR" />
+    <result column="area" property="area" jdbcType="DOUBLE" />
+    <result column="isredtide" property="isredtide" jdbcType="CHAR" />
+    <result column="year" property="year" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, name, date, chl, rt, cloud, area, isredtide, year
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zhuhangjie.pojo.PicExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from pic
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from pic
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from pic
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zhuhangjie.pojo.PicExample" >
+    delete from pic
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zhuhangjie.pojo.Pic" >
+    insert into pic (id, name, date, 
+      chl, rt, cloud, area, 
+      isredtide, year)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{date,jdbcType=DATE}, 
+      #{chl,jdbcType=CHAR}, #{rt,jdbcType=CHAR}, #{cloud,jdbcType=CHAR}, #{area,jdbcType=DOUBLE}, 
+      #{isredtide,jdbcType=CHAR}, #{year,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhuhangjie.pojo.Pic" >
+    insert into pic
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="chl != null" >
+        chl,
+      </if>
+      <if test="rt != null" >
+        rt,
+      </if>
+      <if test="cloud != null" >
+        cloud,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="isredtide != null" >
+        isredtide,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=DATE},
+      </if>
+      <if test="chl != null" >
+        #{chl,jdbcType=CHAR},
+      </if>
+      <if test="rt != null" >
+        #{rt,jdbcType=CHAR},
+      </if>
+      <if test="cloud != null" >
+        #{cloud,jdbcType=CHAR},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=DOUBLE},
+      </if>
+      <if test="isredtide != null" >
+        #{isredtide,jdbcType=CHAR},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  
+  <select id="countByExample" parameterType="com.zhuhangjie.pojo.PicExample" resultType="java.lang.Integer" >
+    select count(*) from pic
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  
+  <!-- List<Pic> selectYears(); -->
+  <select id="selectYears" resultType="com.zhuhangjie.pojo.Pic">
+  	SELECT DISTINCT year from pic ORDER BY year
+  </select>
+  
+  <!-- List<Pic> selectAreaByMonth(Integer year, Integer month); -->
+  <select id="selectAreaByMonth" parameterType="com.zhuhangjie.pojo.QueryPoJo" resultType="com.zhuhangjie.pojo.Pic">
+  	SELECT * FROM pic WHERE date BETWEEN '${year}-${month}-01' AND '${year}-${month}-31'
+  </select>
+  
+   <!-- Pic selectLastDate(); -->
+   <select id="selectLastDate" resultType="com.zhuhangjie.pojo.Pic">
+   	select * from pic where date = (select max(date) from pic)
+   </select>
+   
+   <!-- Pic selectByDate(Date date); -->
+   <select id="selectByDate" parameterType="java.lang.String" resultType="com.zhuhangjie.pojo.Pic">
+   	select * from pic where date = #{value}
+   </select>
+   
+  <update id="updateByExampleSelective" parameterType="map" >
+    update pic
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.date != null" >
+        date = #{record.date,jdbcType=DATE},
+      </if>
+      <if test="record.chl != null" >
+        chl = #{record.chl,jdbcType=CHAR},
+      </if>
+      <if test="record.rt != null" >
+        rt = #{record.rt,jdbcType=CHAR},
+      </if>
+      <if test="record.cloud != null" >
+        cloud = #{record.cloud,jdbcType=CHAR},
+      </if>
+      <if test="record.area != null" >
+        area = #{record.area,jdbcType=DOUBLE},
+      </if>
+      <if test="record.isredtide != null" >
+        isredtide = #{record.isredtide,jdbcType=CHAR},
+      </if>
+      <if test="record.year != null" >
+        year = #{record.year,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update pic
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      date = #{record.date,jdbcType=DATE},
+      chl = #{record.chl,jdbcType=CHAR},
+      rt = #{record.rt,jdbcType=CHAR},
+      cloud = #{record.cloud,jdbcType=CHAR},
+      area = #{record.area,jdbcType=DOUBLE},
+      isredtide = #{record.isredtide,jdbcType=CHAR},
+      year = #{record.year,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhuhangjie.pojo.Pic" >
+    update pic
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=DATE},
+      </if>
+      <if test="chl != null" >
+        chl = #{chl,jdbcType=CHAR},
+      </if>
+      <if test="rt != null" >
+        rt = #{rt,jdbcType=CHAR},
+      </if>
+      <if test="cloud != null" >
+        cloud = #{cloud,jdbcType=CHAR},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=DOUBLE},
+      </if>
+      <if test="isredtide != null" >
+        isredtide = #{isredtide,jdbcType=CHAR},
+      </if>
+      <if test="year != null" >
+        year = #{year,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhuhangjie.pojo.Pic" >
+    update pic
+    set name = #{name,jdbcType=VARCHAR},
+      date = #{date,jdbcType=DATE},
+      chl = #{chl,jdbcType=CHAR},
+      rt = #{rt,jdbcType=CHAR},
+      cloud = #{cloud,jdbcType=CHAR},
+      area = #{area,jdbcType=DOUBLE},
+      isredtide = #{isredtide,jdbcType=CHAR},
+      year = #{year,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

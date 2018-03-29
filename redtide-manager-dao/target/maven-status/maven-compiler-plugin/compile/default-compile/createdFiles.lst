@@ -1,0 +1,5 @@
+com\zhuhangjie\mapper\UserMapper.class
+com\zhuhangjie\mapper\VoyageMapper.class
+com\zhuhangjie\mapper\RecordMapper.class
+com\zhuhangjie\mapper\UserVoyageMapper.class
+com\zhuhangjie\mapper\PicMapper.class

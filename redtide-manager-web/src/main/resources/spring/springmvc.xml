@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+        http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+        
+       <context:property-placeholder location="classpath:conf/*.properties"/>
+       <!-- 扫描controller包里面的程序 -->
+       <context:component-scan base-package="com.zhuhangjie.controller"/>
+       
+       <!-- 注解扫描，把默认的以作废的映射器及适配器换成新的,同时可以在本标签中配置自动以参数绑定 -->
+       <!-- conversion-service="" -->
+       <mvc:annotation-driven conversion-service="conversionServiceFactoryBean"/>
+       
+       <!-- 配置convertor转换工厂 （日期，去掉前后空格）-->
+       <bean id="conversionServiceFactoryBean" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+	       <!-- 配置多個轉換器 -->
+	       <property name="converters">
+	       		<list>
+	       			<bean class="com.zhuhangjie.conversion.DateConverter"></bean>
+	       		</list>
+	       </property>
+       </bean>
+       
+       <!-- 上传图片配置实现类 -->
+       <!-- !!!注意这个实现类的名字是不能变的！！spring只认这个名字 -->
+       <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+       	<!-- 上传图片大小 -->
+       	<property name="defaultEncoding" value="UTF-8"></property>
+       	<property name="maxUploadSize" value="100000000"></property>
+       </bean>
+       
+       
+       <mvc:interceptors>
+       	<mvc:interceptor>
+       		<mvc:mapping path="/**"/>
+       		<mvc:exclude-mapping path="/css/**"/>
+       		<mvc:exclude-mapping path="/js/**"/>
+       		<mvc:exclude-mapping path="/libs/**"/>
+       		<mvc:exclude-mapping path="/theme/**"/>
+       		<mvc:exclude-mapping path="/fonts/**"/>
+       		<mvc:exclude-mapping path="/images/**"/>
+       		<mvc:exclude-mapping path="/**/**login**"/>
+       		<mvc:exclude-mapping path="/**/**register**"/>
+       		<mvc:exclude-mapping path="/**/**checkRegister**"/>
+       		<bean class="com.zhuhangjie.interceptor.LoginInterceptor"></bean>
+       	</mvc:interceptor>
+       </mvc:interceptors>
+       
+       <!-- 资源映射1 -->
+		<mvc:resources location="/css/" mapping="/css/**"></mvc:resources>
+		<mvc:resources location="/js/" mapping="/js/**"></mvc:resources>
+		<mvc:resources location="/libs/" mapping="/libs/**"></mvc:resources>
+		<mvc:resources location="/theme/" mapping="/theme/**"></mvc:resources>
+		<mvc:resources location="/fonts/" mapping="/fonts/**"></mvc:resources>
+		<mvc:resources location="/images/" mapping="/images/**"></mvc:resources>
+       
+       <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+       	<property name="prefix" value="/WEB-INF/jsp/"></property>
+       	<property name="suffix" value=".jsp"></property>
+       </bean>
+</beans>

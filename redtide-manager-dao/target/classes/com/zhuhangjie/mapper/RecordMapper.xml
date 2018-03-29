@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhuhangjie.mapper.RecordMapper" >
+  <resultMap id="BaseResultMap" type="com.zhuhangjie.pojo.Record" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="point_name" property="pointName" jdbcType="VARCHAR" />
+    <result column="record_number" property="recordNumber" jdbcType="BIGINT" />
+    <result column="position_x" property="positionX" jdbcType="DOUBLE" />
+    <result column="position_y" property="positionY" jdbcType="DOUBLE" />
+    <result column="weather" property="weather" jdbcType="VARCHAR" />
+    <result column="water_picture" property="waterPicture" jdbcType="VARCHAR" />
+    <result column="water_demo" property="waterDemo" jdbcType="VARCHAR" />
+    <result column="chl_demo" property="chlDemo" jdbcType="VARCHAR" />
+    <result column="cdom_demo" property="cdomDemo" jdbcType="VARCHAR" />
+    <result column="granule_demo" property="granuleDemo" jdbcType="VARCHAR" />
+    <result column="spectrum_demo" property="spectrumDemo" jdbcType="VARCHAR" />
+    <result column="arrive_time" property="arriveTime" jdbcType="TIMESTAMP" />
+    <result column="voyage_id" property="voyageId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, point_name, record_number, position_x, position_y, weather, water_picture, water_demo, 
+    chl_demo, cdom_demo, granule_demo, spectrum_demo, arrive_time, voyage_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zhuhangjie.pojo.RecordExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from record
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from record
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zhuhangjie.pojo.RecordExample" >
+    delete from record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zhuhangjie.pojo.Record" >
+    insert into record (id, point_name, record_number, 
+      position_x, position_y, weather, 
+      water_picture, water_demo, chl_demo, 
+      cdom_demo, granule_demo, spectrum_demo, 
+      arrive_time, voyage_id)
+    values (#{id,jdbcType=BIGINT}, #{pointName,jdbcType=VARCHAR}, #{recordNumber,jdbcType=BIGINT}, 
+      #{positionX,jdbcType=DOUBLE}, #{positionY,jdbcType=DOUBLE}, #{weather,jdbcType=VARCHAR}, 
+      #{waterPicture,jdbcType=VARCHAR}, #{waterDemo,jdbcType=VARCHAR}, #{chlDemo,jdbcType=VARCHAR}, 
+      #{cdomDemo,jdbcType=VARCHAR}, #{granuleDemo,jdbcType=VARCHAR}, #{spectrumDemo,jdbcType=VARCHAR}, 
+      #{arriveTime,jdbcType=TIMESTAMP}, #{voyageId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhuhangjie.pojo.Record" >
+    insert into record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="pointName != null" >
+        point_name,
+      </if>
+      <if test="recordNumber != null" >
+        record_number,
+      </if>
+      <if test="positionX != null" >
+        position_x,
+      </if>
+      <if test="positionY != null" >
+        position_y,
+      </if>
+      <if test="weather != null" >
+        weather,
+      </if>
+      <if test="waterPicture != null" >
+        water_picture,
+      </if>
+      <if test="waterDemo != null" >
+        water_demo,
+      </if>
+      <if test="chlDemo != null" >
+        chl_demo,
+      </if>
+      <if test="cdomDemo != null" >
+        cdom_demo,
+      </if>
+      <if test="granuleDemo != null" >
+        granule_demo,
+      </if>
+      <if test="spectrumDemo != null" >
+        spectrum_demo,
+      </if>
+      <if test="arriveTime != null" >
+        arrive_time,
+      </if>
+      <if test="voyageId != null" >
+        voyage_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="pointName != null" >
+        #{pointName,jdbcType=VARCHAR},
+      </if>
+      <if test="recordNumber != null" >
+        #{recordNumber,jdbcType=BIGINT},
+      </if>
+      <if test="positionX != null" >
+        #{positionX,jdbcType=DOUBLE},
+      </if>
+      <if test="positionY != null" >
+        #{positionY,jdbcType=DOUBLE},
+      </if>
+      <if test="weather != null" >
+        #{weather,jdbcType=VARCHAR},
+      </if>
+      <if test="waterPicture != null" >
+        #{waterPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="waterDemo != null" >
+        #{waterDemo,jdbcType=VARCHAR},
+      </if>
+      <if test="chlDemo != null" >
+        #{chlDemo,jdbcType=VARCHAR},
+      </if>
+      <if test="cdomDemo != null" >
+        #{cdomDemo,jdbcType=VARCHAR},
+      </if>
+      <if test="granuleDemo != null" >
+        #{granuleDemo,jdbcType=VARCHAR},
+      </if>
+      <if test="spectrumDemo != null" >
+        #{spectrumDemo,jdbcType=VARCHAR},
+      </if>
+      <if test="arriveTime != null" >
+        #{arriveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="voyageId != null" >
+        #{voyageId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zhuhangjie.pojo.RecordExample" resultType="java.lang.Integer" >
+    select count(*) from record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update record
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.pointName != null" >
+        point_name = #{record.pointName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recordNumber != null" >
+        record_number = #{record.recordNumber,jdbcType=BIGINT},
+      </if>
+      <if test="record.positionX != null" >
+        position_x = #{record.positionX,jdbcType=DOUBLE},
+      </if>
+      <if test="record.positionY != null" >
+        position_y = #{record.positionY,jdbcType=DOUBLE},
+      </if>
+      <if test="record.weather != null" >
+        weather = #{record.weather,jdbcType=VARCHAR},
+      </if>
+      <if test="record.waterPicture != null" >
+        water_picture = #{record.waterPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="record.waterDemo != null" >
+        water_demo = #{record.waterDemo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chlDemo != null" >
+        chl_demo = #{record.chlDemo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cdomDemo != null" >
+        cdom_demo = #{record.cdomDemo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.granuleDemo != null" >
+        granule_demo = #{record.granuleDemo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.spectrumDemo != null" >
+        spectrum_demo = #{record.spectrumDemo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arriveTime != null" >
+        arrive_time = #{record.arriveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.voyageId != null" >
+        voyage_id = #{record.voyageId,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update record
+    set id = #{record.id,jdbcType=BIGINT},
+      point_name = #{record.pointName,jdbcType=VARCHAR},
+      record_number = #{record.recordNumber,jdbcType=BIGINT},
+      position_x = #{record.positionX,jdbcType=DOUBLE},
+      position_y = #{record.positionY,jdbcType=DOUBLE},
+      weather = #{record.weather,jdbcType=VARCHAR},
+      water_picture = #{record.waterPicture,jdbcType=VARCHAR},
+      water_demo = #{record.waterDemo,jdbcType=VARCHAR},
+      chl_demo = #{record.chlDemo,jdbcType=VARCHAR},
+      cdom_demo = #{record.cdomDemo,jdbcType=VARCHAR},
+      granule_demo = #{record.granuleDemo,jdbcType=VARCHAR},
+      spectrum_demo = #{record.spectrumDemo,jdbcType=VARCHAR},
+      arrive_time = #{record.arriveTime,jdbcType=TIMESTAMP},
+      voyage_id = #{record.voyageId,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhuhangjie.pojo.Record" >
+    update record
+    <set >
+      <if test="pointName != null" >
+        point_name = #{pointName,jdbcType=VARCHAR},
+      </if>
+      <if test="recordNumber != null" >
+        record_number = #{recordNumber,jdbcType=BIGINT},
+      </if>
+      <if test="positionX != null" >
+        position_x = #{positionX,jdbcType=DOUBLE},
+      </if>
+      <if test="positionY != null" >
+        position_y = #{positionY,jdbcType=DOUBLE},
+      </if>
+      <if test="weather != null" >
+        weather = #{weather,jdbcType=VARCHAR},
+      </if>
+      <if test="waterPicture != null" >
+        water_picture = #{waterPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="waterDemo != null" >
+        water_demo = #{waterDemo,jdbcType=VARCHAR},
+      </if>
+      <if test="chlDemo != null" >
+        chl_demo = #{chlDemo,jdbcType=VARCHAR},
+      </if>
+      <if test="cdomDemo != null" >
+        cdom_demo = #{cdomDemo,jdbcType=VARCHAR},
+      </if>
+      <if test="granuleDemo != null" >
+        granule_demo = #{granuleDemo,jdbcType=VARCHAR},
+      </if>
+      <if test="spectrumDemo != null" >
+        spectrum_demo = #{spectrumDemo,jdbcType=VARCHAR},
+      </if>
+      <if test="arriveTime != null" >
+        arrive_time = #{arriveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="voyageId != null" >
+        voyage_id = #{voyageId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhuhangjie.pojo.Record" >
+    update record
+    set point_name = #{pointName,jdbcType=VARCHAR},
+      record_number = #{recordNumber,jdbcType=BIGINT},
+      position_x = #{positionX,jdbcType=DOUBLE},
+      position_y = #{positionY,jdbcType=DOUBLE},
+      weather = #{weather,jdbcType=VARCHAR},
+      water_picture = #{waterPicture,jdbcType=VARCHAR},
+      water_demo = #{waterDemo,jdbcType=VARCHAR},
+      chl_demo = #{chlDemo,jdbcType=VARCHAR},
+      cdom_demo = #{cdomDemo,jdbcType=VARCHAR},
+      granule_demo = #{granuleDemo,jdbcType=VARCHAR},
+      spectrum_demo = #{spectrumDemo,jdbcType=VARCHAR},
+      arrive_time = #{arriveTime,jdbcType=TIMESTAMP},
+      voyage_id = #{voyageId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
