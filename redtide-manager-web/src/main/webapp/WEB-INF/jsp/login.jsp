@@ -11,13 +11,6 @@
 <script src='${pageContext.request.contextPath}/js/jquery-1.11.3.min.js' type="text/javascript"></script>
 <script src='${pageContext.request.contextPath}/js/layer/layer.js' type="text/javascript"></script>
 <script>
-	window.onload=function(){
-		
-		if(window.parent != window){// 如果是在框架中
-			//就让框架页面跳转到登陆页面
-			window.parent.location.href = "${pageContext.request.contextPath}/login";
-			}
-	};
 	
 	function toPortal() {
 		window.location.href="${pageContext.request.contextPath}/pic/portal";

@@ -36,6 +36,7 @@ public class UserController {
 		RTResult result = userService.login(username, password);
 		User user = (User) result.getData();
 		session.setAttribute("user", user);
+		session.setMaxInactiveInterval(60);
 		return result;
 	}
 	
