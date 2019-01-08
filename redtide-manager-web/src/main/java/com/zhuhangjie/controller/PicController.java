@@ -38,8 +38,8 @@ public class PicController {
 	
 	@RequestMapping("/pic/insert")
 	@ResponseBody
-	public RTResult insertPic(Date date) {
-		RTResult rtResult = picService.insertPic(date);
+	public RTResult insertPic(Date date,String fileName) {
+		RTResult rtResult = picService.insertPic(date,fileName);
 		return rtResult;
 	}
 	
@@ -54,17 +54,20 @@ public class PicController {
 	public String findPic(String date, Model model) {
 		model.addAttribute("oldDate", date);
 		String newDate = date.replaceAll("/", "_");
-		String cloudDate = date.replaceAll("/", "-");
-		Pic pic = picService.selectByDate(cloudDate);
+		//把日期转换成数据库可以识别的模式
+		String date_database = date.replaceAll("/", "-");
+		Pic pic = picService.selectByDate(date_database);
 		model.addAttribute("newDate", newDate);
-		model.addAttribute("cloudDate", cloudDate);
 		if(pic == null || pic.getArea() == null) {
 			model.addAttribute("areaResult","");
+			model.addAttribute("areaOfPoint","");
 			return "portal";
 		}
 		Double area = pic.getArea();
+		int areaP = pic.getRedtidepoint();
 		String areaStr=new BigDecimal(area+"").toString();
 		model.addAttribute("areaResult",areaStr);
+		model.addAttribute("areaOfPoint",areaP);
 		return "portal";
 	}
 	
@@ -91,13 +94,16 @@ public class PicController {
 	@RequestMapping("/pic/portal")
 	public String toPortal(Model model) {
 		Pic pic = picService.selectLastDate();
-		DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
-		String date = df.format(pic.getDate());
-		model.addAttribute("oldDate", date);
-		String newDate = date.replaceAll("/", "_");
-		String cloudDate = date.replaceAll("/", "-");
-		model.addAttribute("newDate", newDate);
-		model.addAttribute("cloudDate", cloudDate);
+		
+		if(pic != null) {
+			DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+			String date = df.format(pic.getDate());
+			model.addAttribute("oldDate", date);
+			String newDate = date.replaceAll("/", "_");
+			model.addAttribute("newDate", newDate);
+			model.addAttribute("areaResult", pic.getArea());
+		}
+		
 		return "portal";
 	}
 	

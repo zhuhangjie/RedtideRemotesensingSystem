@@ -4,13 +4,14 @@
     <thead>
         <tr>
         	<th data-options="field:'ck',checkbox:true"></th>
-        	<th data-options="field:'id',width:100">影像ID</th>
+        	<!-- <th data-options="field:'id',width:100">影像ID</th> -->
             <th data-options="field:'name',width:200">影像文件名</th>
-            <th data-options="field:'date',width:200,align:'center',formatter:formatDatebox">影像日期</th>
-            <th data-options="field:'chl',width:150, formatter:function(value){if(value==1){return '有';}else{return '无';}}">是否有叶绿素信息</th>
-            <th data-options="field:'rt',width:150,formatter:function(value){if(value==1){return '有';}else{return '无';}}">是否有赤潮信息</th>
-            <th data-options="field:'cloud',width:150,formatter:function(value){if(value==1){return '有';}else{return '无';}}">是否有云图信息</th>
-            <th data-options="field:'area',width:200">赤潮面积</th>
+            <th data-options="field:'date',width:150,align:'center',formatter:formatDatebox">影像日期</th>
+            <th data-options="field:'chl',width:100, formatter:function(value){if(value==1){return '有';}else{return '无';}}">是否有叶绿素信息</th>
+            <th data-options="field:'shp',width:100,formatter:function(value){if(value==1){return '有';}else{return '无';}}">是否有赤潮信息</th>
+            <th data-options="field:'cloud',width:100,formatter:function(value){if(value==1){return '有';}else{return '无';}}">是否有云图信息</th>
+            <th data-options="field:'redtidepoint',width:200">自动测量赤潮面积（平方千米）</th>
+            <th data-options="field:'area',width:200">手动测量赤潮面积（平方千米）</th>
             
         </tr>
     </thead>
@@ -29,7 +30,19 @@
     	ids = ids.join(",");
     	return ids;
     }
-    
+	
+    //获得相应名称
+    function getImageSelectionsNames(){
+    	var imageList = $("#imageList");
+    	var sels = imageList.datagrid("getSelections");
+    	var names = [];
+    	for(var i in sels){
+    		names.push(sels[i].name);
+    	}
+    	names = names.join(",");
+    	return names;
+    }
+	
     var toolbar = [{
         text:'新增',
         iconCls:'icon-add',
@@ -66,11 +79,12 @@
         iconCls:'icon-cancel',
         handler:function(){
         	var ids = getImageSelectionsIds();
+        	var names = getImageSelectionsNames();
         	if(ids.length == 0){
         		$.messager.alert('提示','未选中影像!');
         		return ;
         	}
-        	$.messager.confirm('确认','确定删除ID为 '+ids+' 的影像吗？',function(r){
+        	$.messager.confirm('确认','确定删除名字为 '+names+' 的影像吗？',function(r){
         	    if (r){
         	    	var params = {"ids":ids};
                 	$.post("${pageContext.request.contextPath}/image/delete",params, function(data){

@@ -5,12 +5,12 @@ import java.io.File;
 import java.io.FileWriter;
 
 import org.junit.Test;
-
+/*
 public class ProcessTest {
 
 	private String fullName;
 	
-	/*@Test
+	@Test
 	public void processTest() throws Exception {
 		//将文件名写入txt
 		fullName = "A2016314050500.L2_LAC_OC.nc";
@@ -107,5 +107,6 @@ public class ProcessTest {
 		        out.close();   
 		  
 		        System.out.println("生成zip成功");   
-	}*/
+	}
 }
+*/

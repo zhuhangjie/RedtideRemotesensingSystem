@@ -2,4 +2,5 @@ com\zhuhangjie\service\impl\PicServiceImpl.class
 com\zhuhangjie\service\impl\UserServiceImpl.class
 com\zhuhangjie\service\quartz\DownloadJob.class
 com\zhuhangjie\service\impl\VoyageServiceImpl.class
+com\zhuhangjie\realm\LoginRealm.class
 com\zhuhangjie\service\impl\RecordServiceImpl.class

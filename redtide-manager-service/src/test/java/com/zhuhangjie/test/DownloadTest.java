@@ -12,19 +12,19 @@ import java.net.URL;
 
 import org.jsoup.Jsoup;
 import org.junit.Test;
-
+/*
 public class DownloadTest {
 
-	/*@Test
+	@Test
 	public void downloadChla() throws Exception {
-		String name = "A2017272044";
+		String name = "A2017192044000.L2_LAC_OC";
 		String dateInfo = name.substring(1, 8);
 		String picDate = "2017-08-24";
-		String sURL = "https://gibs.earthdata.nasa.gov/image-download?TIME="+dateInfo+"&extent=120,25,125,32&epsg=4326&layers=Coastlines,MODIS_Aqua_Chlorophyll_A&opacities=1,1&worldfile=false&format=image/geotiff&width=592&height=800";
+		String sURL = "http://oceandata.sci.gsfc.nasa.gov/cgi/getfile/A2017192044000.L2_LAC_OC.nc";
 		int nStartPos = 0;
 		int nRead = 0;
 		//System.out.println(sURL);
-		String sPath = "F:\\RedTideData\\chla\\";   //输出路径
+		String sPath = "G:\\tide\\";   //输出路径
 		try {
 			URL url = new URL(sURL);
 			// 打开连接
@@ -32,7 +32,7 @@ public class DownloadTest {
 			// 获得文件长度
 			//long nEndPos = getFileSize(sURL);
 			long nEndPos = 1422830;
-			RandomAccessFile oSavedFile = new RandomAccessFile(sPath + "chl" + picDate +".tiff", "rw");
+			RandomAccessFile oSavedFile = new RandomAccessFile(sPath + "chl" + picDate +".nc", "rw");
 			httpConnection.setRequestProperty("User-Agent", "Internet Explorer");
 			String sProperty = "bytes=" + nStartPos + "-";
 			// 告诉服务器book.rar这个文件从nStartPos字节开始传
@@ -64,7 +64,7 @@ public class DownloadTest {
 		OutputStream os = null;  
 		try {  
 		//Jsoup网页解析器
-		byte[] imgBytes = Jsoup.connect("http://gibs.earthdata.nasa.gov/image-download?TIME=" + picDate + "&&extent=117.017578125,25.3740234375,129.322265625,33.1435546875&epsg=4326&layers=MODIS_Aqua_CorrectedReflectance_TrueColor,Coastlines&opacities=1,1&worldfile=false&format=image/jpeg&width=1400&height=884").timeout(20000).ignoreContentType(true).execute().bodyAsBytes();  
+		byte[] imgBytes = Jsoup.connect("http://gibs.earthdata.nasa.gov/image-download?TIME=A2017272044&&extent=117.017578125,25.3740234375,129.322265625,33.1435546875&epsg=4326&layers=MODIS_Aqua_CorrectedReflectance_TrueColor,Coastlines&opacities=1,1&worldfile=false&format=image/jpeg&width=1400&height=884").timeout(20000).ignoreContentType(true).execute().bodyAsBytes();  
 		// 输出的文件流    
 		File sf=new File("F:\\RedTideData\\cloud\\");    
 		if(!sf.exists()){    
@@ -88,5 +88,5 @@ public class DownloadTest {
 		} catch (Exception e2) {  
 		}  
 		}  
-	}*/
-}
+	}
+}*/

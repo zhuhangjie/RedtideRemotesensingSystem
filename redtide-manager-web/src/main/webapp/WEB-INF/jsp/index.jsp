@@ -4,13 +4,23 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>赤潮监测系统后台管理</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/jquery-easyui-1.4.1/themes/gray/easyui.css" />
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/jquery-easyui-1.4.1/themes/icon.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/easyui/themes/default/easyui.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/easyui/themes/icon.css" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/easyui/jquery.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/easyui/locale/easyui-lang-zh_CN.js"></script>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/e3.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/default.css" />
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-easyui-1.4.1/jquery.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-easyui-1.4.1/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-easyui-1.4.1/locale/easyui-lang-zh_CN.js"></script>
+<!--  -->
+<style>
+	/* 更换datagrid首行的颜色 */
+    .datagrid-header-row td{background-color:white;color:#white}
+    /* 后面有个小灰空格用覆盖样式来 覆盖掉*/
+    .datagrid-header-inner{background-color:white}
+    /* 设置后台标题长度不然会有滚动条 */
+    .northTitle{height: 40px}
+</style>
+<!-- 一些前段的script -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/common.js"></script>
 <style type="text/css">
 	.content {
@@ -21,9 +31,11 @@
 </head>
 <body class="easyui-layout">
     <!-- 头部标题 -->
-	<div data-options="region:'north',border:false" style="height:60px; padding:5px; background:#F3F3F3"> 
-		<span class="northTitle">赤潮监测系统后台</span>
-	    <span class="loginInfo">登录用户：${user.username}&nbsp;&nbsp;姓名：${user.name}&nbsp;&nbsp;角色：系统管理员&nbsp;&nbsp;<button id="userQuery">查看用户信息</button><button id="userUpdate">修改用户信息</button></span>
+	<div data-options="region:'north',border:false" style="height:50px; padding:5px; background:#FFF"> 
+		<span class="northTitle" style="display:block;">&nbsp&nbsp赤潮监测系统后台</span>
+	    <span style="font-size:16px" class="loginInfo">&nbsp姓名：${user.name}&nbsp;&nbsp;&nbsp角色：系统管理员&nbsp;&nbsp;
+	    <!-- <button id="userQuery" class="easyui-linkbutton">查看用户信息</button>&nbsp&nbsp<button id="userUpdate" class="easyui-linkbutton">修改用户信息</button> -->
+	    </span>
 	</div>
 	
     <div data-options="region:'west',title:'菜单',split:true" style="width:180px;">
@@ -55,13 +67,14 @@
     <div data-options="region:'center',title:''">
     	<div id="tabs" class="easyui-tabs">
 		    <div title="首页" style="padding:20px;">
-		        	<h1><a href="${pageContext.request.contextPath}/pic/portal" style="font-size: 20px">返回赤潮显示首页</a></h1>
+		        	<h1><a href="${pageContext.request.contextPath}/pic/portal" style="font-size: 20px"><button id="back" class="easyui-linkbutton">返回赤潮页面</button></a></h1>
+		        	
 		    </div>
 		</div>
     </div>
     <!-- 页脚信息 -->
 	<div data-options="region:'south',border:false" style="height:20px; background:#F3F3F3; padding:2px; vertical-align:middle;">
-		<span id="sysVersion">系统版本：V1.0</span>
+		<span id="sysVersion">系统版本：V3.0</span>
 	    <span id="nowTime"></span>
 	</div>
 	<div id="userEditWindow" class="easyui-window" title="修改个人信息" data-options="modal:true,closed:true,iconCls:'icon-save',href:'${pageContext.request.contextPath}/user-edit'" style="width:80%;height:80%;padding:10px;">

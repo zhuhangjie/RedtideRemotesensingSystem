@@ -10,11 +10,15 @@
 	            <td>影像生成日期:</td>
 	            <td><input class="easyui-datebox" type="date" name="date" id="datetime" data-options="required:true" style="width: 280px;"></input></td>
 	        </tr>
+	        <tr>
+	            <td>文件名:</td>
+	            <td><input class="easyui-textbox" type="text" name="fileName" id="fileName" value="" style="width: 280px;"></input></td>
+	        </tr>
 	    </table>
 	</form>
 	<div style="padding:5px">
 	    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">提交</a>
-	    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">重置</a>
+	    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()" >重置</a>
 	</div>
 </div>
 
@@ -38,9 +42,9 @@
 				$('#imageAddForm').form('reset');
 				//增加影像后重新刷新影像列表
 				$("#imageList").datagrid("reload");
-			} else if(data.status == 402) {
+			} else if(data.status == 300) {
 				$.messager.alert('提示',data.msg);
-			} else if(data.status == 403) {
+			} else if(data.status == 300) {
 				$.messager.alert('提示',data.msg);
 			}
 			else {

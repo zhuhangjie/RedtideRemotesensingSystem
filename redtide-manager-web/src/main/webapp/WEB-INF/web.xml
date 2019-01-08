@@ -2,8 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
   <display-name>redtide-manager-web</display-name>
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
+    <welcome-file>portal.jsp</welcome-file>
     <welcome-file>index.jsp</welcome-file>
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.htm</welcome-file>
@@ -18,6 +17,16 @@
   <listener>
   	<listener-class>org.springframework.web.context.ContextLoaderListener </listener-class>
   </listener>
+  
+  <!-- 配置spring框架提供的用于整和shiro框架的过滤器 -->
+  <filter>
+  	<filter-name>shiroFilter</filter-name>
+  	<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>shiroFilter</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
   
   <filter>
   	<filter-name>CharacterEncodingFilter</filter-name>

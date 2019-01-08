@@ -23,7 +23,7 @@
 		<property name="jobDetail" ref="jobDetail"></property>
 		<!-- 注入cron表达式 ，指定触发时间点-->
 		<property name="cronExpression">
-			<value>0 0 10 * * ? 2017-2099</value> 
+			<value>0 0 10 * * ? 2017-2099</value>  
 		</property>
 	</bean>
 	

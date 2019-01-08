@@ -9,17 +9,17 @@ public class Pic {
 
     private Date date;
 
-    private String chl;
+    private Boolean nc;
 
-    private String rt;
+    private Boolean chl;
 
-    private String cloud;
+    private Boolean cloud;
+
+    private Boolean shp;
+
+    private Integer redtidepoint;
 
     private Double area;
-
-    private String isredtide;
-
-    private Integer year;
 
     public Integer getId() {
         return id;
@@ -45,28 +45,44 @@ public class Pic {
         this.date = date;
     }
 
-    public String getChl() {
+    public Boolean getNc() {
+        return nc;
+    }
+
+    public void setNc(Boolean nc) {
+        this.nc = nc;
+    }
+
+    public Boolean getChl() {
         return chl;
     }
 
-    public void setChl(String chl) {
-        this.chl = chl == null ? null : chl.trim();
+    public void setChl(Boolean chl) {
+        this.chl = chl;
     }
 
-    public String getRt() {
-        return rt;
-    }
-
-    public void setRt(String rt) {
-        this.rt = rt == null ? null : rt.trim();
-    }
-
-    public String getCloud() {
+    public Boolean getCloud() {
         return cloud;
     }
 
-    public void setCloud(String cloud) {
-        this.cloud = cloud == null ? null : cloud.trim();
+    public void setCloud(Boolean cloud) {
+        this.cloud = cloud;
+    }
+
+    public Boolean getShp() {
+        return shp;
+    }
+
+    public void setShp(Boolean shp) {
+        this.shp = shp;
+    }
+
+    public Integer getRedtidepoint() {
+        return redtidepoint;
+    }
+
+    public void setRedtidepoint(Integer redtidepoint) {
+        this.redtidepoint = redtidepoint;
     }
 
     public Double getArea() {
@@ -77,19 +93,11 @@ public class Pic {
         this.area = area;
     }
 
-    public String getIsredtide() {
-        return isredtide;
-    }
-
-    public void setIsredtide(String isredtide) {
-        this.isredtide = isredtide == null ? null : isredtide.trim();
-    }
-
-    public Integer getYear() {
-        return year;
-    }
-
-    public void setYear(Integer year) {
-        this.year = year;
-    }
+	@Override
+	public String toString() {
+		return "Pic [id=" + id + ", name=" + name + ", date=" + date + ", nc=" + nc + ", chl=" + chl + ", cloud="
+				+ cloud + ", shp=" + shp + ", redtidepoint=" + redtidepoint + ", area=" + area + "]";
+	}
+    
+    
 }

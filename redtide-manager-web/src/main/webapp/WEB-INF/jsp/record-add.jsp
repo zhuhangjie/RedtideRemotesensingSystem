@@ -4,7 +4,7 @@
 <script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/js/kindeditor-4.1.10/lang/zh_CN.js"></script>
 <script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/js/jquery.form.min.js"></script>
 <div style="padding:10px 10px 10px 10px">
-	<form id="recordAddForm"  method="post" enctype="multipart/form-data" action="${pageContext.request.contextPath}/record/save"><!--  -->
+	<form id="recordAddForm"  method="post" enctype="multipart/form-data" action="${pageContext.request.contextPath}/record/save">
 	    <table cellpadding="5">
 	         <tr>
 	            <td>选择航次:</td>
@@ -41,12 +41,12 @@
 	        <tr>
 	            <td>黄色物质含量:</td>
 	            <td><input class="easyui-textbox" type="text" name="cdomDemo" data-options="" style="width: 280px;"></input></td>
-	        </tr>
+	        </tr> 
 	        <tr>
 	            <td>悬浮颗粒含量:</td>
 	            <td><input class="easyui-textbox" type="text" name="granuleDemo" data-options="" style="width: 280px;"></input></td>
-	        </tr>
-	        <tr>
+	        </tr> 
+	         <tr>
 	            <td>光谱编号:</td>
 	            <td><input class="easyui-textbox" type="text" name="spectrumDemo" data-options="" style="width: 280px;"></input></td>
 	        </tr>

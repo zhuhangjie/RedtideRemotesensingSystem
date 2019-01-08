@@ -5,6 +5,7 @@ com\zhuhangjie\pojo\Record.class
 com\zhuhangjie\pojo\QueryPoJo.class
 com\zhuhangjie\pojo\RecordExample.class
 com\zhuhangjie\pojo\UserVoyageExample$GeneratedCriteria.class
+com\zhuhangjie\pojo\QueryPojoDuring.class
 com\zhuhangjie\pojo\PicExample.class
 com\zhuhangjie\pojo\VoyageExample.class
 com\zhuhangjie\pojo\RecordExample$GeneratedCriteria.class

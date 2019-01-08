@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService{
 		
 		return RTResult.ok();
 	}
-
+	
 	@Override
 	public RTResult register(User user) {
 		//对用户信息再次校验

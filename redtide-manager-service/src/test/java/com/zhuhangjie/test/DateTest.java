@@ -12,15 +12,38 @@ import org.junit.Test;
 
 import com.zhuhangjie.common.utils.DayToDate;
 import com.zhuhangjie.common.utils.NameConStr;
+import com.zhuhangjie.common.utils.netcdf.NetcdfUtils;
 
 public class DateTest {
 
-	@Test
+	/*@Test
 	public void dateTest() throws Exception {
-		String date = DayToDate.convertToDate(2017, 272);
-	}
+		String convertToDate = DayToDate.convertToDate(2018, 91);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = simpleDateFormat.parse(convertToDate);
+		String name = NameConStr.DateToName(date);
+		String nameStr = NameConStr.nameStr(2018, 91);
+		System.out.println(nameStr);
+		System.out.println(name);
+		
+	}*/
 	
-	@Test
+	/*@Test
+	public void sss() throws Exception {
+		NetcdfUtils netcdfUtils = new NetcdfUtils("D:\\A2017272044000.L2_LAC_OC.nc");
+		//boolean[][] bs = netcdfUtils.getRedtideByOldeFunction();
+		double[][] geo = netcdfUtils.getGeo(NetcdfUtils.LONGITUDE);
+		//double[][] ds = netcdfUtils.getReflect(NetcdfUtils.R412);
+		//double[][] longt = netcdfUtils.getGeo(1);
+		for (int i = 0; i < geo.length; i++) {
+			for (int j = 0; j < geo[0].length; j++) {
+				System.out.print(geo[i][j]);
+			}
+			System.out.println();
+		}
+	}*/
+	
+	/*@Test
 	public void dayTest() throws Exception {
 		Date date = new Date();
 		String string = DayToDate.convertToDayOfYearBeforeOneDay(date);
@@ -29,11 +52,7 @@ public class DateTest {
 	
 	@Test
 	public void name() {
-		Date date = new Date();
-		String string = DayToDate.convertToDayOfYear(date);
-		int year = Integer.parseInt(string.substring(0, 4));
-		int day = Integer.parseInt(string.substring(4, 7));
-		String nameStr = NameConStr.nameStr(year, day);
-		System.out.println(nameStr);
-	}
+		System.out.println(DayToDate.convertToDate(2018, 91));
+		
+	}*/
 }

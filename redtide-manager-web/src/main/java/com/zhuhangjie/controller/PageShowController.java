@@ -19,7 +19,7 @@ public class PageShowController {
 	
 	@RequestMapping("/portal")
 	public String toPortal() {
-		return "portal";
+		return "redirect:/pic/portal";
 	}
 	
 	@RequestMapping("/upload")
@@ -27,9 +27,10 @@ public class PageShowController {
 		return "upload";
 	}
 	
+	//重定向到查找最近日期
 	@RequestMapping("/")
 	public String toHome() {
-		return "index";
+		return "redirect:/pic/portal";
 	}
 	
 	@RequestMapping("/{page}")

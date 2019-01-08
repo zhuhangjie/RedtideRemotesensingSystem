@@ -10,7 +10,7 @@ public interface PicService {
 	//通过id查找影像
 	public Pic selectPicById(Integer id);
 	//插入影像数据
-	public RTResult insertPic(Date date);
+	public RTResult insertPic(Date date,String fileName);
 	//更新影像数据
 	public RTResult updatePic(Pic pic);
 	//删除影像数据
